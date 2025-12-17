@@ -1,0 +1,17 @@
+# Virtual environments
+venv/
+.venv/
+env/
+.env/
+
+# Virtualenv / venv internal directories (safety net)
+bin/
+include/
+lib/
+lib64/
+Scripts/
+pyvenv.cfg
+
+# pipenv / poetry sometimes use these
+Pipfile.lock
+.poetry/
