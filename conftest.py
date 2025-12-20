@@ -1,14 +1,40 @@
 import os
+import time
+
 import pytest
 from dotenv import load_dotenv
 from selenium import webdriver
+from selenium.common import WebDriverException
 from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.chrome.options import Options
 from webdriver_manager.chrome import ChromeDriverManager
-
 from screenshoot_utility import take_screenshot
+from selenium.webdriver.support.ui import WebDriverWait
+
 
 load_dotenv()
+
+
+
+# @pytest.fixture(scope="function")
+# def driver():
+#     options = Options()
+#     options.add_argument("--no-sandbox")
+#     options.add_argument("--disable-dev-shm-usage")
+#     options.add_argument("--disable-gpu")
+#     options.add_argument("--window-size=1920,1080")
+#
+#     driver = webdriver.Remote(
+#         command_executor="http://chrome:4444/wd/hub",
+#         options=options
+#     )
+#     driver.maximize_window()
+#
+#     # ADD THIS LINE — critical for Docker
+#     driver.wait = WebDriverWait(driver, 15)
+#
+#     yield driver
+#     driver.quit()
 
 @pytest.fixture(scope="function")
 def driver():
@@ -24,6 +50,7 @@ def driver():
     service = Service(ChromeDriverManager().install())
     driver = webdriver.Chrome(service=service, options=chrome_options)
     driver.maximize_window()
+    driver.wait = WebDriverWait(driver, 10)
     yield driver
     driver.quit()
 

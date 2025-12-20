@@ -1,5 +1,6 @@
 from selenium.webdriver.common.by import By
 from pages.base_page import BasePage
+from pages.header_page import HeaderPage
 
 
 class CheckoutPage(BasePage):
@@ -9,6 +10,10 @@ class CheckoutPage(BasePage):
     ZIP_CODE = (By.ID, "postal-code")
     CONTINUE_BUTTON = (By.ID, "continue")
     ERROR_MESSAGE = (By.CSS_SELECTOR, "[data-test='error']")
+
+    def __init__(self, driver):
+        super().__init__(driver)
+        self.header = HeaderPage(driver)
 
     def get_page_title(self) -> str:
         return self.text_of(self.PAGE_TITLE)
@@ -28,3 +33,6 @@ class CheckoutPage(BasePage):
 
     def cancel_checkout(self):
         self.click(self.CANCEL_BUTTON)
+
+    def logout(self):
+        self.header.logout()

@@ -1,3 +1,4 @@
+from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.by import By
 
 from pages.login_page import LoginPage
@@ -192,3 +193,38 @@ def test_complete_checkout_flow(driver, base_url, credentials):
     assert "checkout-complete.html" in driver.current_url
     success_header = driver.find_element(By.CLASS_NAME, "complete-header").text
     assert success_header == "Thank you for your order!"
+
+
+def test_logout_inventory_page(driver, base_url, credentials):
+    inventory_page, _ = login_and_get_pages(driver, base_url, credentials)
+
+    inventory_page.logout()
+
+    # After logout, we should be back on login page
+    login_button = driver.wait.until(EC.presence_of_element_located((By.ID, "login-button")))
+    assert login_button.is_displayed(), "Login button should be visible after logout"
+    assert "inventory.html" not in driver.current_url, "Should no longer be on inventory page"
+
+def test_logout_cart_page(driver, base_url, credentials):
+    cart_page, _ = login_and_get_pages(driver, base_url, credentials)
+
+    cart_page.logout()
+    login_button = driver.wait.until(EC.presence_of_element_located((By.ID, "login-button")))
+    assert login_button.is_displayed(), "Login button should be visible after logout"
+    assert "cart.html" not in driver.current_url, "Should no longer be on cart page"
+
+def test_logout_checkout_page(driver, base_url, credentials):
+    checkout_page, _ = login_and_get_pages(driver, base_url, credentials)
+
+    checkout_page.logout()
+    login_button = driver.wait.until(EC.presence_of_element_located((By.ID, "login-button")))
+    assert login_button.is_displayed(), "Login button should be visible after logout"
+    assert "checkout-step-one.html" not in driver.current_url, "Should no longer be on checkout page"
+
+def test_logout_product_page(driver, base_url, credentials):
+    product_page, _ = login_and_get_pages(driver, base_url, credentials)
+
+    product_page.logout()
+    login_button = driver.wait.until(EC.presence_of_element_located((By.ID, "login-button")))
+    assert login_button.is_displayed(), "Login button should be visible after logout"
+    assert "inventory-item.html" not in driver.current_url, "Should no longer be on product page"

@@ -1,8 +1,13 @@
 from selenium.webdriver.common.by import By
 from pages.base_page import BasePage
+from pages.header_page import HeaderPage
 
 
 class CartPage(BasePage):
+    def __init__(self, driver):
+        super().__init__(driver)
+        self.header = HeaderPage(driver)
+
     PAGE_TITLE = (By.CLASS_NAME, "title")
     ITEM_NAME = (By.CLASS_NAME, "inventory_item_name")
     REMOVE_BUTTON = (By.ID, "remove-sauce-labs-backpack")
@@ -24,3 +29,6 @@ class CartPage(BasePage):
 
     def checkout(self):
         self.click(self.CHECKOUT)
+
+    def logout(self):
+        self.header.logout()

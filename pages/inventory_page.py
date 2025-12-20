@@ -2,6 +2,7 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import Select
 from selenium.webdriver.support import expected_conditions as EC
 from pages.base_page import BasePage
+from pages.header_page import HeaderPage
 
 
 class InventoryPage(BasePage):
@@ -11,9 +12,16 @@ class InventoryPage(BasePage):
     CART_LINK = (By.CLASS_NAME, "shopping_cart_link")
     SORT_DROPDOWN = (By.CLASS_NAME, "product_sort_container")
     BACKPACK_LINK = (By.ID, "item_4_title_link")
+    HUMBERGER_MENU = (By.ID, "react-burger-menu-btn")
+    LOGOUT_BUTTON = (By.ID, "logout_sidebar_link")
+
+    def __init__(self, driver):
+        super().__init__(driver)
+        self.header = HeaderPage(driver)  # composition
 
     def add_to_cart_backpack(self):
-        self.click(self.ADD_TO_CART_BACKPACK)
+        self.wait.until(EC.element_to_be_clickable(self.ADD_TO_CART_BACKPACK)).click()
+        self.wait.until(EC.text_to_be_present_in_element(self.CART_BADGE, "1"))
 
     def get_cart_item_count(self) -> int:
         if self.isvisible(self.CART_BADGE):
@@ -52,3 +60,6 @@ class InventoryPage(BasePage):
     def get_all_product_prices(self):
         elements = self.driver.find_elements(By.CLASS_NAME, "inventory_item_price")
         return [float(e.text.replace("$", "")) for e in elements]
+
+    def logout(self):
+        self.header.logout()
