@@ -29,14 +29,14 @@ def driver():
     options.add_argument("--disable-dev-shm-usage")
     options.add_argument("--disable-gpu")
     options.add_argument("--window-size=1920,1080")
-    options.add_argument("--headless=new")  # Modern, more stable headless mode
+    options.add_argument("--headless=new")
 
     driver = webdriver.Remote(
         command_executor="http://chrome:4444/wd/hub",
         options=options
     )
     driver.maximize_window()
-    driver.wait = WebDriverWait(driver, 60)  # Keep 60s – essential for Docker
+    driver.wait = WebDriverWait(driver, 15)
 
     yield driver
     driver.quit()
