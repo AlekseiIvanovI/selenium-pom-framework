@@ -26,7 +26,7 @@ Used for web UI regression testing on e-commerce and SaaS platforms (saucedemo.c
 
 - Clean Page Object Model architecture with shared Header component
 - Explicit waits and reliable locators
-- 20+ end-to-end tests covering critical user flows (login, cart, checkout, sorting, logout from multiple pages)
+- 19 end-to-end tests covering critical user flows (login, cart, checkout, sorting, logout from multiple pages)
 - Allure + HTML reporting with screenshots on failure
 - Docker support (standalone Chrome container)
 - GitHub Actions CI ready
@@ -74,7 +74,7 @@ docker compose up --build --abort-on-container-exit
 
 Results
 
-20+ stable tests covering critical user flows
+19 stable tests covering critical user flows
 35% faster regression cycles
 Zero flaky tests in stable environments
 Full traceability with Allure reports and screenshots
