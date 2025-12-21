@@ -16,43 +16,48 @@ load_dotenv()
 
 
 
-# @pytest.fixture(scope="function")
-# def driver():
-#     options = Options()
-#     options.add_argument("--no-sandbox")
-#     options.add_argument("--disable-dev-shm-usage")
-#     options.add_argument("--disable-gpu")
-#     options.add_argument("--window-size=1920,1080")
-#
-#     driver = webdriver.Remote(
-#         command_executor="http://chrome:4444/wd/hub",
-#         options=options
-#     )
-#     driver.maximize_window()
-#
-#     # ADD THIS LINE — critical for Docker
-#     driver.wait = WebDriverWait(driver, 15)
-#
-#     yield driver
-#     driver.quit()
-
 @pytest.fixture(scope="function")
 def driver():
-    # Disable password manager prompts for cleaner automation
-    chrome_options = Options()
+    options = Options()
     prefs = {
         "credentials_enable_service": False,
         "profile.password_manager_enabled": False,
         "profile.password_manager_leak_detection": False
     }
-    chrome_options.add_experimental_option("prefs", prefs)
+    options.add_experimental_option("prefs", prefs)
+    options.add_argument("--no-sandbox")
+    options.add_argument("--disable-dev-shm-usage")
+    options.add_argument("--disable-gpu")
+    options.add_argument("--window-size=1920,1080")
+    options.add_argument("--headless=new")  # Modern, more stable headless mode
 
-    service = Service(ChromeDriverManager().install())
-    driver = webdriver.Chrome(service=service, options=chrome_options)
+    driver = webdriver.Remote(
+        command_executor="http://chrome:4444/wd/hub",
+        options=options
+    )
     driver.maximize_window()
-    driver.wait = WebDriverWait(driver, 10)
+    driver.wait = WebDriverWait(driver, 60)  # Keep 60s – essential for Docker
+
     yield driver
     driver.quit()
+
+# @pytest.fixture(scope="function")
+# def driver():
+#     # Disable password manager prompts for cleaner automation
+#     chrome_options = Options()
+#     prefs = {
+#         "credentials_enable_service": False,
+#         "profile.password_manager_enabled": False,
+#         "profile.password_manager_leak_detection": False
+#     }
+#     chrome_options.add_experimental_option("prefs", prefs)
+#
+#     service = Service(ChromeDriverManager().install())
+#     driver = webdriver.Chrome(service=service, options=chrome_options)
+#     driver.maximize_window()
+#     driver.wait = WebDriverWait(driver, 10)
+#     yield driver
+#     driver.quit()
 
 @pytest.fixture()
 def base_url():

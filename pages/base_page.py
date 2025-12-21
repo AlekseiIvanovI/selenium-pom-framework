@@ -13,9 +13,6 @@ class BasePage:
     def find(self, locator):
         return self.wait.until(EC.presence_of_element_located(locator))
 
-    # def click(self, locator: tuple):
-    #     self.find(locator).click()
-
     def click(self, locator: tuple):
         element = self.wait.until(EC.element_to_be_clickable(locator))
         element.click()

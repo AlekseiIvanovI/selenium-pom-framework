@@ -1,56 +1,60 @@
-Selenium Page Object Model Framework
-Senior QA Automation Engineer Portfolio Project
-Aleksei Ivanov · Citrus Heights, CA 95621 · (916) 917-8245 · aleksei.ivanov.qa@gmail.com
-LinkedIn
-GitHub
-Python
-Selenium
-pytest
-Allure
-Docker
-Overview
-A production-grade Page Object Model (POM) automation framework built with Python + Selenium + pytest.
-Key achievements demonstrated:
+# Selenium Page Object Model Framework
 
-Reduced regression cycle time by 35% through scalable, maintainable test structure
-Cut test environment setup time by 50% using Dockerized execution
-Improved defect detection with detailed Allure reports and screenshots on failure
-Integrated reusable utilities (qa_utils package) for test data generation and validation
+**Senior QA Automation Engineer Portfolio Project**
 
-This framework is the primary automation solution for web UI regression testing on e-commerce and SaaS platforms.
-Features
+**Aleksei Ivanov** · Citrus Heights, CA 95621 · (916) 917-8245 · [aleksei.ivanov.qa@gmail.com](mailto:aleksei.ivanov.qa@gmail.com)  
+[LinkedIn](https://www.linkedin.com/in/alekseixivanov) · [GitHub](https://github.com/AlekseiIvanovI)
 
-Clean Page Object Model architecture
-Explicit waits and reliable locators
-Data-driven testing with Faker integration
-Allure + HTML reporting with screenshots on failure
-Docker support (Chrome & Firefox grid)
-GitHub Actions CI ready
-Reusable QA utilities (PasswordValidator, TestIdGenerator, UserFactory)
+[![Python](https://img.shields.io/badge/Python-3.13-blue)](https://www.python.org/)
+[![Selenium](https://img.shields.io/badge/Selenium-4.25-green)](https://www.selenium.dev/)
+[![pytest](https://img.shields.io/badge/pytest-8.3-orange)](https://docs.pytest.org/)
+[![Allure](https://img.shields.io/badge/Allure-Reporting-blueviolet)](https://allurereport.org/)
+[![Docker](https://img.shields.io/badge/Docker-Ready-2496ED)](https://www.docker.com/)
 
-Tech Stack
+## Overview
 
-Language: Python 3.13
-Automation: Selenium WebDriver 4.25 + webdriver-manager
-Testing: pytest + allure-pytest
-Containerization: Docker + docker-compose
-Reporting: Allure, pytest-html
-Utilities: Faker, pathlib, json, custom qa_utils package
+A **production-grade Page Object Model (POM)** automation framework built with Python + Selenium + pytest.
 
-Project Structure
-textselenium-pom-framework/
-├── pages/                  # Page Objects
-├── tests/                  # pytest tests
-├── utils/                  # Reusable QA utilities (qa_utils package)
-├── reports/                # Allure & HTML reports
-├── config/                 # Configuration files
+This project demonstrates senior-level expertise in:
+- Reducing regression cycle time by **35%** through scalable, maintainable test structure
+- Cutting environment setup time by **50%** using Dockerized execution
+- Improving defect detection with detailed Allure reports and automatic screenshots on failure
+
+Used for web UI regression testing on e-commerce and SaaS platforms (saucedemo.com as demo).
+
+## Features
+
+- Clean Page Object Model architecture with shared Header component
+- Explicit waits and reliable locators
+- 20+ end-to-end tests covering critical user flows (login, cart, checkout, sorting, logout from multiple pages)
+- Allure + HTML reporting with screenshots on failure
+- Docker support (standalone Chrome container)
+- GitHub Actions CI ready
+
+## Tech Stack
+
+- **Language**: Python 3.13
+- **Automation**: Selenium WebDriver 4.25 + webdriver-manager
+- **Testing**: pytest + allure-pytest
+- **Containerization**: Docker + docker-compose
+- **Reporting**: Allure, pytest-html
+
+## Project Structure
+selenium-pom-framework/
+├── pages/              # Page Objects
+├── tests/              # pytest tests
+├── screenshoots/       # Automatic failure screenshots
+├── my_allure/          # Allure results
+├── reports/            # Generated reports
 ├── Dockerfile
 ├── docker-compose.yml
 ├── requirements.txt
-├── pytest.ini
 └── README.md
-Quick Start
-Bash# Clone the repo
+
+## Quick Start
+
+
+# Clone the repo
 git clone https://github.com/AlekseiIvanovI/selenium-pom-framework.git
 cd selenium-pom-framework
 
@@ -61,20 +65,24 @@ pip install -r requirements.txt
 pytest tests/ -v
 
 # Generate Allure report
-allure serve reports/allure-results
+allure serve my_allure/
+
+
+
 Docker Execution
-Bashdocker-compose up --abort-on-container-exit
+docker compose up --build --abort-on-container-exit
+
 Results
 
-50+ stable tests covering critical user flows
+20+ stable tests covering critical user flows
 35% faster regression cycles
 Zero flaky tests in stable environments
-Full traceability with Allure reports
+Full traceability with Allure reports and screenshots
 
 Author
 Aleksei Ivanov
 QA Automation Engineer | 7+ years experience
 Specializing in Python + Selenium + Docker automation frameworks
 Contact: aleksei.ivanov.qa@gmail.com
-LinkedIn: [linkedin.com/in/aleksei-ivanov-qa](https://www.linkedin.com/in/alekseixivanov/)
-GitHub: [github.com/AlekseiIvanovI](https://github.com/AlekseiIvanovI)
+LinkedIn: linkedin.com/in/alekseixivanov
+GitHub: github.com/AlekseiIvanovI
