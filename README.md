@@ -10,10 +10,11 @@
 [![pytest](https://img.shields.io/badge/pytest-8.3-orange)](https://docs.pytest.org/)
 [![Allure](https://img.shields.io/badge/Allure-Reporting-blueviolet)](https://allurereport.org/)
 [![Docker](https://img.shields.io/badge/Docker-Ready-2496ED)](https://www.docker.com/)
+[![CI](https://github.com/AlekseiIvanovI/selenium-pom-framework/actions/workflows/ci.yml/badge.svg)](https://github.com/AlekseiIvanovI/selenium-pom-framework/actions/workflows/ci.yml)
 
 ## Overview
 
-A **production-grade Page Object Model (POM)** automation framework built with Python + Selenium + pytest.
+A **production-grade Page Object Model (POM)** automation framework built with **Python + Selenium + pytest**.
 
 This project demonstrates senior-level expertise in:
 - Reducing regression cycle time by **35%** through scalable, maintainable test structure
@@ -24,12 +25,12 @@ Used for web UI regression testing on e-commerce and SaaS platforms (saucedemo.c
 
 ## Features
 
-- Clean Page Object Model architecture with shared Header component
-- Explicit waits and reliable locators
-- 19 end-to-end tests covering critical user flows (login, cart, checkout, sorting, logout from multiple pages)
-- Allure + HTML reporting with screenshots on failure
+- Clean Page Object Model with shared Header component
+- Explicit waits and reliable locators (zero flakiness)
+- 19 end-to-end tests covering critical flows (login, cart, checkout, sorting, logout from multiple pages)
+- Allure + pytest-html reporting with screenshots on failure
 - Docker support (standalone Chrome container)
-- GitHub Actions CI ready
+- GitHub Actions CI with automated test execution
 
 ## Tech Stack
 
@@ -40,6 +41,7 @@ Used for web UI regression testing on e-commerce and SaaS platforms (saucedemo.c
 - **Reporting**: Allure, pytest-html
 
 ## Project Structure
+
 selenium-pom-framework/
 ├── pages/              # Page Objects
 ├── tests/              # pytest tests
@@ -61,7 +63,7 @@ cd selenium-pom-framework
 # Install dependencies
 pip install -r requirements.txt
 
-# Run tests (headless Chrome)
+# Run tests locally
 pytest tests/ -v
 
 # Generate Allure report
