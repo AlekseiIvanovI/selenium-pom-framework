@@ -4,17 +4,14 @@ import time
 import pytest
 from dotenv import load_dotenv
 from selenium import webdriver
-from selenium.common import WebDriverException
-from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.chrome.options import Options
-from webdriver_manager.chrome import ChromeDriverManager
-from screenshoot_utility import take_screenshot
+from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.support.ui import WebDriverWait
+from webdriver_manager.chrome import ChromeDriverManager
 
+from screenshoot_utility import take_screenshot
 
 load_dotenv()
-
-
 
 @pytest.fixture(scope="function")
 def driver():
@@ -29,14 +26,19 @@ def driver():
         "profile.password_manager_enabled": False,
         "profile.password_manager_leak_detection": False
     }
+    options.add_experimental_option("prefs", prefs)
 
-    command_executor = "http://localhost:4444/wd/hub" if os.getenv("DOCKER") or os.getenv("GITHUB_ACTIONS") else "http://chrome:4444/wd/hub"
+    if os.getenv("GITHUB_ACTIONS") or os.getenv("DOCKER"):
+        command_executor = "http://localhost:4444/wd/hub"
+    else:
+        command_executor = "http://chrome:4444/wd/hub"
 
     driver = webdriver.Remote(
         command_executor=command_executor,
         options=options
     )
     driver.maximize_window()
+
     driver.wait = WebDriverWait(driver, 15)
 
     yield driver
@@ -70,6 +72,7 @@ def credentials():
         "user_name": os.getenv("USER_NAME", "standard_user"),
         "password": os.getenv("PASSWORD", "secret_sauce")
     }
+
 # Automatically take a screenshot when a test fails
 @pytest.hookimpl(hookwrapper=True)
 def pytest_runtest_makereport(item):
