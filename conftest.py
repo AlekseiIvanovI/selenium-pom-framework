@@ -24,7 +24,12 @@ def driver():
     options.add_argument("--disable-gpu")
     options.add_argument("--window-size=1920,1080")
 
-    # In GitHub Actions and Docker, use localhost instead of 'chrome'
+    prefs = {
+        "credentials_enable_service": False,
+        "profile.password_manager_enabled": False,
+        "profile.password_manager_leak_detection": False
+    }
+
     command_executor = "http://localhost:4444/wd/hub" if os.getenv("DOCKER") or os.getenv("GITHUB_ACTIONS") else "http://chrome:4444/wd/hub"
 
     driver = webdriver.Remote(
