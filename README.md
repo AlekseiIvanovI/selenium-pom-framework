@@ -35,7 +35,7 @@ Used for web UI regression testing on e-commerce and SaaS platforms (saucedemo.c
 ## Tech Stack
 
 - **Language**: Python 3.13
-- **Automation**: Selenium WebDriver 4.25 + webdriver-manager
+- **Automation**: Selenium WebDriver 4.39 + webdriver-manager
 - **Testing**: pytest + allure-pytest
 - **Containerization**: Docker + docker-compose
 - **Reporting**: Allure, pytest-html
