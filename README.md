@@ -6,7 +6,7 @@
 [LinkedIn](https://www.linkedin.com/in/alekseixivanov) · [GitHub](https://github.com/AlekseiIvanovI)
 
 [![Python](https://img.shields.io/badge/Python-3.13-blue)](https://www.python.org/)
-[![Selenium](https://img.shields.io/badge/Selenium-4.25-green)](https://www.selenium.dev/)
+[![Selenium](https://img.shields.io/badge/Selenium-4.39-green)](https://www.selenium.dev/)
 [![pytest](https://img.shields.io/badge/pytest-8.3-orange)](https://docs.pytest.org/)
 [![Allure](https://img.shields.io/badge/Allure-Reporting-blueviolet)](https://allurereport.org/)
 [![Docker](https://img.shields.io/badge/Docker-Ready-2496ED)](https://www.docker.com/)
